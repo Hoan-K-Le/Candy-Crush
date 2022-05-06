@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const candyGrid = document.querySelector('.candyGrid')
-    const gridWidth = 4
+    const gridWidth = 8
     // create an empty array like tictactoe
     const squares = []
 
@@ -11,7 +11,13 @@ document.addEventListener('DOMContentLoaded', () => {
         'orange',
         'purple',
         'green',
-        'blue'
+        'pink'
+        // these are zombie images when we're ready to replace the colors with
+        // 'url(img/red-zombie.jpg)',
+        // 'url(img/yellow-zombie.jpg)',
+        // 'url(img/orange-zombie.jpg)',
+        // 'url(img/purple.zombie.jpg)',
+        // 'url(img/green-zombie.jpg)'
     ]
 
 
@@ -22,7 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // start creating a div for the square so each box has a square
             const square = document.createElement('div')
             //Figure out a way to drag them to a certain spot(RESEARCH)
-            square.setAttribute('draggable', true)
+            square.setAttribute('draggable', true) // Source (stackoverflow)
+            //try find a way to figure out which one is being dragged by giving them class/id
+            square.setAttribute('id', i) // loop over 15 times thats why theres an i
             let randomColor = Math.floor(Math.random () * candyColors.length)
             square.style.backgroundColor = candyColors[randomColor]
             candyGrid.appendChild(square)
@@ -30,8 +38,59 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     createBoard()
+    // this lets me know where its being drag to and at which position.
+    let colorBeingDragged 
+    let colorBeingReplaced
+    let squareIdBeingDragged
+    let squareIdBeingReplaced
+    squares.forEach(square => square.addEventListener('dragstart', dragStart))
+    squares.forEach(square => square.addEventListener('dragend', dragEnd))
+    squares.forEach(square => square.addEventListener('dragover', dragOver))
+    squares.forEach(square => square.addEventListener('dragenter', dragEnter))
+    squares.forEach(square => square.addEventListener('dragleave', dragLeave))
+    squares.forEach(square => square.addEventListener('dragdrop', dragDrop))
+    
+    function dragStart(e) {
+        e.preventDefault()
+        colorBeingDragged = this.style.backgroundColor
+        squareIdBeingDragged = parseInt(this.id)
+        console.log(colorBeingDragged)
+        console.log(this.id, 'dragstart')
+    }
+    
+    
+    function dragEnter() {
+        console.log(this.id, 'dragEnter')
+    }
+    
+    
+    function dragOver() {
+        console.log(this.id, 'dragOver')
+    }
+    
+    
+    function dragLeave() {
+        console.log(this.id, 'dragLeave')
+    }
+    
+    
+    function dragEnd() {
+        console.log(this.id, 'dragEnd')
+    }
+    
+    
+    function dragDrop() {
+        console.log(this.id, 'dragDrop')
+        colorBeingReplaced = this.style.backgroundColor
+        squareIdBeingReplaced = parseInt(this.id)
+        squares[squareIdBeingDragged].style.backgroundColor = colorBeingReplaced
+    }
+
+
 
 })
 
 
-
+    
+    
+    
