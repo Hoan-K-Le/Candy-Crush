@@ -30,7 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
             square.setAttribute('draggable', true) // Source (stackoverflow)
             //try find a way to figure out which one is being dragged by giving them class/id
             square.setAttribute('id', i) // loop over 15 times thats why theres an i
-            let randomColor = Math.floor(Math.random () * candyColors.length)
+            // use the same random color theory as the div homework
+            let randomColor = Math.floor(Math.random () * candyColors.length) 
             square.style.backgroundColor = candyColors[randomColor]
             candyGrid.appendChild(square)
             squares.push(square)
@@ -77,10 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     
-    function dragEnd() {
-        console.log(this.id, 'dragend')
-    }
-    
     
     function dragDrop() {
         console.log(this.id, 'drop')
@@ -89,6 +86,32 @@ document.addEventListener('DOMContentLoaded', () => {
         this.style.backgroundColor = colorBeingDragged
         squares[squareIdBeingDragged].style.backgroundColor = colorBeingReplaced // etch-sketch notes
     }
+    
+    function dragEnd() {
+        console.log(this.id, 'dragend')
+
+    let theMoves = [
+         squareIdBeingDragged -1,
+         squareIdBeingDragged -gridWidth, 
+         squareIdBeingDragged +1, 
+         squareIdBeingDragged +gridWidth,
+        ]
+    
+    let theMove = theMoves.includes(squareIdBeingReplaced)
+    if(squareIdBeingReplaced && theMove) {
+        squareIdBeingReplaced = null
+    } else if (squareIdBeingReplaced && !theMove) {
+        squares[squareIdBeingReplaced].style.backgroundColor = colorBeingReplaced
+        squares[squareIdBeingDragged].style.backgroundColor = colorBeingDragged
+    }else squares[squareIdBeingDragged].style.backgroundColor = colorBeingDragged
+}
+    
+
+//Check each rows for wins now
+
+
+
+
 
 
 
