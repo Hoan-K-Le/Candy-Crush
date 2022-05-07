@@ -1,8 +1,10 @@
 .candyGrid {
     display: flex;
-    height: 800px;
-    width: 800px;
+    height: 500px;
+    width: 500px;
     flex-wrap: wrap;
+    border-radius: 5px;
+    border: 1rem;
 }
 
 .candyGrid div {
@@ -15,7 +17,8 @@ h1 {
 }
 
 body {
-    /* background: url(/img/zombie-background.jpeg) fixed no-repeat; */
+    background-image: url(../img/zombie-background.jpeg);
+    background-repeat: no-repeat;
     background-size: cover;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;

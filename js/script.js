@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const candyGrid = document.querySelector('.candyGrid')
-    const gridWidth = 8
+    const gridWidth = 5
     // create an empty array like tictactoe
     const squares = []
 
@@ -10,8 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'yellow',
         'orange',
         'purple',
-        'green',
-        'pink'
+        'green'
         // these are zombie images when we're ready to replace the colors with
         // 'url(img/red-zombie.jpg)',
         // 'url(img/yellow-zombie.jpg)',
@@ -43,47 +42,52 @@ document.addEventListener('DOMContentLoaded', () => {
     let colorBeingReplaced
     let squareIdBeingDragged
     let squareIdBeingReplaced
+
     squares.forEach(square => square.addEventListener('dragstart', dragStart))
     squares.forEach(square => square.addEventListener('dragend', dragEnd))
     squares.forEach(square => square.addEventListener('dragover', dragOver))
     squares.forEach(square => square.addEventListener('dragenter', dragEnter))
     squares.forEach(square => square.addEventListener('dragleave', dragLeave))
-    squares.forEach(square => square.addEventListener('dragdrop', dragDrop))
-    
-    function dragStart(e) {
-        e.preventDefault()
+    squares.forEach(square => square.addEventListener('drop', dragDrop))
+
+    //Figure out a way where if you hover the color to the next, it'll change the color
+
+    function dragStart() {
         colorBeingDragged = this.style.backgroundColor
         squareIdBeingDragged = parseInt(this.id)
         console.log(colorBeingDragged)
         console.log(this.id, 'dragstart')
     }
     
-    
-    function dragEnter() {
-        console.log(this.id, 'dragEnter')
+    function dragOver(e) {
+        e.preventDefault()
+        console.log(this.id, 'dragover')
     }
     
     
-    function dragOver() {
-        console.log(this.id, 'dragOver')
+    function dragEnter(e) {
+        e.preventDefault()
+        console.log(this.id, 'dragenter')
     }
+    
     
     
     function dragLeave() {
-        console.log(this.id, 'dragLeave')
+        console.log(this.id, 'dragleave')
     }
     
     
     function dragEnd() {
-        console.log(this.id, 'dragEnd')
+        console.log(this.id, 'dragend')
     }
     
     
     function dragDrop() {
-        console.log(this.id, 'dragDrop')
+        console.log(this.id, 'drop')
         colorBeingReplaced = this.style.backgroundColor
         squareIdBeingReplaced = parseInt(this.id)
-        squares[squareIdBeingDragged].style.backgroundColor = colorBeingReplaced
+        this.style.backgroundColor = colorBeingDragged
+        squares[squareIdBeingDragged].style.backgroundColor = colorBeingReplaced // etch-sketch notes
     }
 
 
