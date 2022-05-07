@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const candyGrid = document.querySelector('.candyGrid')
-    const gridWidth = 5
+    const gridWidth = 6
     // create an empty array like tictactoe
     const squares = []
 
@@ -108,6 +108,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
 
 //Check each rows for wins now
+
+
+
+
 
 
 
