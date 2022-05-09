@@ -119,13 +119,17 @@ function eachRow () {
         if (threeRow.every(index => eachBox[index].style.backgroundColor === theColor && !ifBlank)) {
             score += 3
             threeRow.forEach(index => {
-                eachBox[i].style.backgroundColor = ''
+                eachBox[index].style.backgroundColor = ''
             })
         }
     }
 }
 
 eachRow()
+// constantly continues the pages in 100ms 
+window.setInterval( () => {
+    eachRow ()
+}, 100)
 
 
 
