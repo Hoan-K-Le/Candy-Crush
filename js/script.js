@@ -2,10 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const candyGrid = document.querySelector('.candyGrid')
     const gridWidth = 6
     // create an empty array like tictactoe
-    const squares = []
+    const eachBox = []
+    let score = 0
 
     //Declare the color and the matches
-    const candyColors = [
+    const zombieColors = [
         'red',
         'yellow',
         'orange',
@@ -23,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // create the board with for loops
     function createBoard () {
-        for(let i = 0; i < gridWidth*gridWidth; i++) {
+        for(let i = 0; i < gridWidth*gridWidth; i++) { //6x6 board 
             // start creating a div for the square so each box has a square
             const square = document.createElement('div')
             //Figure out a way to drag them to a certain spot(RESEARCH)
@@ -31,28 +32,28 @@ document.addEventListener('DOMContentLoaded', () => {
             //try find a way to figure out which one is being dragged by giving them class/id
             square.setAttribute('id', i) // loop over 15 times thats why theres an i
             // use the same random color theory as the div homework
-            let randomColor = Math.floor(Math.random () * candyColors.length) 
-            square.style.backgroundColor = candyColors[randomColor]
+            let randomColor = Math.floor(Math.random () * zombieColors.length) 
+            square.style.backgroundColor = zombieColors[randomColor]
             candyGrid.appendChild(square)
-            squares.push(square)
+            eachBox.push(square)
         }
     }
     createBoard()
     // this lets me know where its being drag to and at which position.
-    let colorBeingDragged 
-    let colorBeingReplaced
-    let squareIdBeingDragged
-    let squareIdBeingReplaced
+    let colorBeingDragged; 
+    let colorBeingReplaced;
+    let squareIdBeingDragged;
+    let squareIdBeingReplaced;
 
-    squares.forEach(square => square.addEventListener('dragstart', dragStart))
-    squares.forEach(square => square.addEventListener('dragend', dragEnd))
-    squares.forEach(square => square.addEventListener('dragover', dragOver))
-    squares.forEach(square => square.addEventListener('dragenter', dragEnter))
-    squares.forEach(square => square.addEventListener('dragleave', dragLeave))
-    squares.forEach(square => square.addEventListener('drop', dragDrop))
+    eachBox.forEach(square => square.addEventListener('dragstart', dragStart)) // click on image to drag
+    eachBox.forEach(square => square.addEventListener('dragend', dragEnd)) // after drag drop, you swap the two images
+    eachBox.forEach(square => square.addEventListener('dragover', dragOver)) // moving image around while its clicked
+    eachBox.forEach(square => square.addEventListener('dragenter', dragEnter)) // moving image onto another one
+    eachBox.forEach(square => square.addEventListener('dragleave', dragLeave)) // dragged image leaving another image
+    eachBox.forEach(square => square.addEventListener('drop', dragDrop)) // drag image over another image, and then drop it on top of it
 
     //Figure out a way where if you hover the color to the next, it'll change the color
-
+ // this.id refers to that id of the function indepently than the entire thing.
     function dragStart() {
         colorBeingDragged = this.style.backgroundColor
         squareIdBeingDragged = parseInt(this.id)
@@ -84,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
         colorBeingReplaced = this.style.backgroundColor
         squareIdBeingReplaced = parseInt(this.id)
         this.style.backgroundColor = colorBeingDragged
-        squares[squareIdBeingDragged].style.backgroundColor = colorBeingReplaced // etch-sketch notes
+        eachBox[squareIdBeingDragged].style.backgroundColor = colorBeingReplaced // etch-sketch notes
     }
     
     function dragEnd() {
@@ -101,14 +102,30 @@ document.addEventListener('DOMContentLoaded', () => {
     if(squareIdBeingReplaced && theMove) {
         squareIdBeingReplaced = null
     } else if (squareIdBeingReplaced && !theMove) {
-        squares[squareIdBeingReplaced].style.backgroundColor = colorBeingReplaced
-        squares[squareIdBeingDragged].style.backgroundColor = colorBeingDragged
-    }else squares[squareIdBeingDragged].style.backgroundColor = colorBeingDragged
+        eachBox[squareIdBeingReplaced].style.backgroundColor = colorBeingReplaced
+        eachBox[squareIdBeingDragged].style.backgroundColor = colorBeingDragged
+    }else eachBox[squareIdBeingDragged].style.backgroundColor = colorBeingDragged
 }
     
 
-//Check each rows for wins now
+// figure out how to get scores now with the rows/columns
 
+function eachRow () {
+    for (let i = 0; i < 33; i++) {
+        let threeRow = [i, i+1, i+2]
+        let theColor = eachBox[i].style.backgroundColor
+        const ifBlank = eachBox[i].style.backgroundColor === ''
+
+        if (threeRow.every(index => eachBox[index].style.backgroundColor === theColor && !ifBlank)) {
+            score += 3
+            threeRow.forEach(index => {
+                eachBox[i].style.backgroundColor = ''
+            })
+        }
+    }
+}
+
+eachRow()
 
 
 
