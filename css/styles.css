@@ -1,15 +1,15 @@
 .candyGrid {
     display: flex;
-    height: 600px;
-    width: 600px;
+    height: 560px;
+    width: 560px;
     flex-wrap: wrap;
     border-radius: 5px;
     border: 1rem;
 }
 
 .candyGrid div {
-    height: 100px;
-    width: 100px;
+    height: 70px;
+    width: 70px;
 }
 
 .titleContainer {
@@ -19,6 +19,11 @@
     border-radius: 80px;
 }
 
+p {
+    color: white;
+    font-size: 50px;
+   
+}
 
 
 h1 {

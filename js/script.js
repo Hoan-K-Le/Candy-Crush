@@ -1,9 +1,31 @@
 document.addEventListener('DOMContentLoaded', () => {
     const candyGrid = document.querySelector('.candyGrid')
-    const gridWidth = 6
+    const gridWidth = 8
     // create an empty array like tictactoe
     const eachBox = []
     let score = 0
+    // creating a time clock
+    let startingSeconds = 10
+    // let time = startingSeconds * 10
+    const countDown = document.getElementById('countTimer');
+
+    // function for countdown timer
+    let refreshClock = setInterval(updateTimer, 1000)
+    // let outClock = setTimeout(updateTimer, 5000)
+    
+    
+    
+    function updateTimer () {
+        // let startingSeconds = startingSeconds % 10
+        
+        countDown.innerHTML = `${startingSeconds}`;
+        startingSeconds --;
+        
+                if (startingSeconds === -1) {
+                    
+                    clearInterval(refreshClock)
+             }
+    }
 
     //Declare the color and the matches
     const zombieColors = [
@@ -108,10 +130,10 @@ document.addEventListener('DOMContentLoaded', () => {
 }
     
 
-// figure out how to get scores now with the rows/columns
+// figure out how to get scores now with the rows
 
 function eachRow () {
-    for (let i = 0; i < 33; i++) {
+    for (let i = 0; i < 61; i++) {
         let threeRow = [i, i+1, i+2]
         let theColor = eachBox[i].style.backgroundColor
         const ifBlank = eachBox[i].style.backgroundColor === ''
@@ -124,11 +146,32 @@ function eachRow () {
         }
     }
 }
-
 eachRow()
+
+
+// figure out how to get scores now with the columns
+
+function eachColumn () {
+    for (let i = 0; i < 47; i++) {
+        let threeColumn = [i, i+gridWidth, i+gridWidth*2]
+        let theColor = eachBox[i].style.backgroundColor
+        const ifBlank = eachBox[i].style.backgroundColor === ''
+
+        if (threeColumn.every(index => eachBox[index].style.backgroundColor === theColor && !ifBlank)) {
+            score += 3
+            threeColumn.forEach(index => {
+                eachBox[index].style.backgroundColor = ''
+            })
+        }
+    }
+}
+eachColumn()
+
+
 // constantly continues the pages in 100ms 
 window.setInterval( () => {
     eachRow ()
+    eachColumn()
 }, 100)
 
 
@@ -141,6 +184,8 @@ window.setInterval( () => {
 
 
 })
+
+// build gravity so when it matches = blocks fall down
 
 
     
