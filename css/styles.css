@@ -16,15 +16,36 @@
     display: flex;
     justify-content: center;
     /* border: 2rem; */
-    border-radius: 80px;
+    /* border-radius: 50%; */
+    /* background-size: 10; */
+}
+
+.theHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.img {
+    border-radius: 100%;
+    /* background-size: 10rem; */
+}
+
+#countTimer {
+    margin: 0 auto;
 }
 
 p {
     color: white;
-    font-size: 50px;
+    font-size: 40px;
    
 }
 
+h3 {
+    color:white;
+    font-size: 10;
+}
 
 h1 {
     text-align: center;

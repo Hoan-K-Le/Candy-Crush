@@ -1,11 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
     const candyGrid = document.querySelector('.candyGrid')
     const gridWidth = 8
+
+    
+
+    // Search up how to show Score
+    const showScore = document.getElementById('score')
+
     // create an empty array like tictactoe
     const eachBox = []
     let score = 0
     // creating a time clock
-    let startingSeconds = 10
+    let startingSeconds = 100
     // let time = startingSeconds * 10
     const countDown = document.getElementById('countTimer');
 
@@ -22,16 +28,18 @@ document.addEventListener('DOMContentLoaded', () => {
         startingSeconds --;
         
                 if (startingSeconds === -1) {
-                    
+                    alert('game over! Your score is ' + score)
                     clearInterval(refreshClock)
              }
     }
+
+
 
     //Declare the color and the matches
     const zombieColors = [
         'red',
         'yellow',
-        'orange',
+        'hotpink',
         'purple',
         'green'
         // these are zombie images when we're ready to replace the colors with
@@ -62,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     createBoard()
     // this lets me know where its being drag to and at which position.
-    let colorBeingDragged; 
+    let colorBeingDragged;
     let colorBeingReplaced;
     let squareIdBeingDragged;
     let squareIdBeingReplaced;
@@ -137,9 +145,15 @@ function eachRow () {
         let threeRow = [i, i+1, i+2]
         let theColor = eachBox[i].style.backgroundColor
         const ifBlank = eachBox[i].style.backgroundColor === ''
+            // figure out a way to stop the row's from splitting the match aka 2 and 1 on different row
+        
+        const notRow = [6, 7, 14, 15, 22, 23 ,30 ,31, 38, 39, 46, 47, 54, 55]  
+        if (notRow.includes(i)) continue
+        
 
         if (threeRow.every(index => eachBox[index].style.backgroundColor === theColor && !ifBlank)) {
             score += 3
+            showScore.innerHTML = score
             threeRow.forEach(index => {
                 eachBox[index].style.backgroundColor = ''
             })
@@ -157,8 +171,10 @@ function eachColumn () {
         let theColor = eachBox[i].style.backgroundColor
         const ifBlank = eachBox[i].style.backgroundColor === ''
 
+
         if (threeColumn.every(index => eachBox[index].style.backgroundColor === theColor && !ifBlank)) {
             score += 3
+            showScore.innerHTML = score
             threeColumn.forEach(index => {
                 eachBox[index].style.backgroundColor = ''
             })
@@ -178,6 +194,9 @@ window.setInterval( () => {
 
 
 
+// instructions
+//game win/lose 
+// reset button
 
 
 
@@ -185,9 +204,14 @@ window.setInterval( () => {
 
 })
 
+
+
+// stretch 
 // build gravity so when it matches = blocks fall down
+// each square = picture of zombie
+// high score replacement
+// game over = bug splat in bugged
 
 
-    
-    
+
     
