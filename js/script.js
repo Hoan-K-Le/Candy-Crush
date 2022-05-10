@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const eachBox = []
     let score = 0
     // creating a time clock
-    let startingSeconds = 100
+    let startingSeconds = 1
     // let time = startingSeconds * 10
     const countDown = document.getElementById('countTimer');
 
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let refreshClock = setInterval(updateTimer, 1000)
     // let outClock = setTimeout(updateTimer, 5000)
     
-    
+    let gameState = true
     
     function updateTimer () {
         // let startingSeconds = startingSeconds % 10
@@ -28,9 +28,17 @@ document.addEventListener('DOMContentLoaded', () => {
         startingSeconds --;
         
                 if (startingSeconds === -1) {
-                    alert('game over! Your score is ' + score)
                     clearInterval(refreshClock)
+                    gameState = false
+                if (gameState === false) 
+                candyGrid.innerText = `Game Over! Your score is ${score}`
+                // candyGrid.style.fontSize = "2rem";
+                candyGrid.classList.add('gameOver')
+
+
+               
              }
+        
     }
 
 
@@ -189,7 +197,6 @@ window.setInterval( () => {
     eachRow ()
     eachColumn()
 }, 100)
-
 
 
 

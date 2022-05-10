@@ -12,6 +12,8 @@
     width: 70px;
 }
 
+
+
 .titleContainer {
     display: flex;
     justify-content: center;
@@ -29,6 +31,7 @@
 
 .img {
     border-radius: 100%;
+    background-color: red;
     /* background-size: 10rem; */
 }
 
@@ -64,5 +67,17 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     font-family: Arial, Helvetica, sans-serif;
+    
+}
+
+.gameOver {
+    display: flex;
+    justify-content: center;
+    background-image: url(../img/cartoon.png);
+    font-size: 3rem;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color:hotpink;
     
 }
