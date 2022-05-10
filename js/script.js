@@ -2,7 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const candyGrid = document.querySelector('.candyGrid')
     const gridWidth = 8
 
-    
+    const newP = document.createElement('p')
+    newP.classList.add('gameOver')
 
     // Search up how to show Score
     const showScore = document.getElementById('score')
@@ -11,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const eachBox = []
     let score = 0
     // creating a time clock
-    let startingSeconds = 1
+    let startingSeconds = 2
     // let time = startingSeconds * 10
     const countDown = document.getElementById('countTimer');
 
@@ -22,22 +23,27 @@ document.addEventListener('DOMContentLoaded', () => {
     let gameState = true
     
     function updateTimer () {
-        // let startingSeconds = startingSeconds % 10
-        
-        countDown.innerHTML = `${startingSeconds}`;
+        countDown.innerHTML = `${startingSeconds}`; // this starts the timer
         startingSeconds --;
         
                 if (startingSeconds === -1) {
                     clearInterval(refreshClock)
+                    //Adding a game over function
+                
                     gameState = false
-                if (gameState === false) 
-                candyGrid.innerText = `Game Over! Your score is ${score}`
-                // candyGrid.style.fontSize = "2rem";
-                candyGrid.classList.add('gameOver')
+                if (gameState === false)  {
 
-
-               
-             }
+                    candyGrid.innerText = `Game Over! Your score is ${score}! Try Again!`
+                    // candyGrid.style.fontSize = "2rem";
+                    candyGrid.classList.add('gameOver')
+                      
+                
+                  if (score >= 30)
+                    candyGrid.innerText = `Winner! Your score is ${score}` 
+                    candyGrid.classList.add('winWin')   
+                    
+                }
+            }
         
     }
 

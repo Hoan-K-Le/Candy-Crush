@@ -73,11 +73,20 @@ body {
 .gameOver {
     display: flex;
     justify-content: center;
-    background-image: url(../img/cartoon.png);
-    font-size: 3rem;
+    background-image: url(../img/newzombie.png);
+    font-size: 5rem;
     margin: 0 auto;
     background-repeat: no-repeat;
     background-size: cover;
-    color:hotpink;
+    color: red;
+    text-align: center;
     
 }
+
+/* .winWin {
+    display: flex;
+    justify-content: center;
+    background-size: cover;
+    background-image: url(../img/winner.jpeg);
+    color: black;
+} */
