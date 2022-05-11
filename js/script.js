@@ -133,7 +133,7 @@ const countDown = document.getElementById('countTimer');
                     
                     gameState = false
                 if (gameState === false)  {
-                  if (score >= 100) {
+                  if (score >= 35) {
                     candyGrid.innerText = `Winner! Your score is ${score}!` 
                     candyGrid.classList.add('winWin')   
                  } else {
