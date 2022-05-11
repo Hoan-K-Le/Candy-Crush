@@ -8,6 +8,8 @@
 ]
 
 
+
+
 // const candyGrid = document.querySelector('.candyGrid')
 // gridWidth = 8;
 // const clearGame = () => {
@@ -36,6 +38,8 @@
 //     eachBox.push(square)
 // }
 // }
+
+
 const candyGrid = document.querySelector('.candyGrid')
 const gridWidth = 8
 
@@ -47,34 +51,21 @@ const showScore = document.getElementById('score')
 
 // create an empty array like tictactoe
 const eachBox = []
+
 // starting the score at zero and globally declaring it
 let score = 0
+
 // creating a time clock
-let startingSeconds = 20
-// let time = startingSeconds * 10
+let startingSeconds = 15
+
+
 const countDown = document.getElementById('countTimer');
 
         
         
         
         document.addEventListener('DOMContentLoaded', () => {
-    //         const candyGrid = document.querySelector('.candyGrid')
-    //         const gridWidth = 8
-            
-    //         const newP = document.createElement('p')
-    //         newP.classList.add('gameOver')
-            
-    //         // Search up how to show Score
-    //         const showScore = document.getElementById('score')
-            
-    //         // create an empty array like tictactoe
-    //         const eachBox = []
-    //         // starting the score at zero and globally declaring it
-    //         let score = 0
-    //         // creating a time clock
-    //         let startingSeconds = 100
-    // // let time = startingSeconds * 10
-    // const countDown = document.getElementById('countTimer');
+
 
     // function for countdown timer
     let refreshClock = setInterval(updateTimer, 1000)
@@ -181,16 +172,18 @@ const countDown = document.getElementById('countTimer');
             //Figure out a way to drag them to a certain spot(RESEARCH)
             square.setAttribute('draggable', true) // Source (stackoverflow)
             //try find a way to figure out which one is being dragged by giving them class/id
-            square.setAttribute('id', i) // loop over 15 times thats why theres an i
+            square.setAttribute('id', i) // loop over 15 times
             // use the same random color theory as the div homework
             let randomColor = Math.floor(Math.random () * zombieColors.length) 
-            square.style.backgroundColor = zombieColors[randomColor]
-            candyGrid.appendChild(square)
+            square.style.backgroundColor = zombieColors[randomColor] // where i made the square into random colors
+            candyGrid.appendChild(square) // create square's in the grid
             eachBox.push(square)
         
         }
     }
     createBoard()
+
+
     // this lets me know where its being drag to and at which position.
     let colorBeingDragged;
     let colorBeingReplaced;
@@ -209,39 +202,39 @@ const countDown = document.getElementById('countTimer');
     function dragStart() {
         colorBeingDragged = this.style.backgroundColor
         squareIdBeingDragged = parseInt(this.id)
-        console.log(colorBeingDragged)
-        console.log(this.id, 'dragstart')
+        // console.log(colorBeingDragged)
+        // console.log(this.id, 'dragstart')
     }
     
     function dragOver(e) {
         e.preventDefault()
-        console.log(this.id, 'dragover')
+        // console.log(this.id, 'dragover')
     }
     
     
     function dragEnter(e) {
         e.preventDefault()
-        console.log(this.id, 'dragenter')
+        // console.log(this.id, 'dragenter')
     }
     
     
     
     function dragLeave() {
-        console.log(this.id, 'dragleave')
+        // console.log(this.id, 'dragleave')
     }
     
     
     
     function dragDrop() {
-        console.log(this.id, 'drop')
+        // console.log(this.id, 'drop')
         colorBeingReplaced = this.style.backgroundColor
         squareIdBeingReplaced = parseInt(this.id)
         this.style.backgroundColor = colorBeingDragged
-        eachBox[squareIdBeingDragged].style.backgroundColor = colorBeingReplaced // etch-sketch notes
+        eachBox[squareIdBeingDragged].style.backgroundColor = colorBeingReplaced // refer to etch-sketch notes where you replace the color
     }
     
     function dragEnd() {
-        console.log(this.id, 'dragend')
+        // console.log(this.id, 'dragend')
 
     let theMoves = [
          squareIdBeingDragged -1,
@@ -276,8 +269,8 @@ function eachRow () {
 
             // figure out a way to stop the row's from splitting the match aka 2 and 1 on different row
             // this prevents the row at the end to not have 2 square = match
-        const notRow = [6, 7, 14, 15, 22, 23 ,30 ,31, 38, 39, 46, 47, 54, 55]  
-        if (notRow.includes(i)) continue // skipping the numbers if it includes
+        const notRow = [6, 7, 14, 15, 22, 23 ,30 ,31, 38, 39, 46, 47, 54, 55]   
+        if (notRow.includes(i)) continue 
         
 
         if (threeRow.every(index => eachBox[index].style.backgroundColor === theColor && !ifBlank)) {
@@ -359,7 +352,6 @@ window.setInterval( () => {
 
 
 
-// instructions
 //game win/lose 
 // reset button
 
