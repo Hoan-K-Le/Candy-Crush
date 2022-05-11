@@ -1,24 +1,125 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const candyGrid = document.querySelector('.candyGrid')
-    const gridWidth = 8
 
-    const newP = document.createElement('p')
-    newP.classList.add('gameOver')
+  const zombieColors = [
+    "url('../img/zombie1.jpeg')",
+    'yellow',
+    'hotpink',
+    'purple',
+    'lightblue'
+]
 
-    // Search up how to show Score
-    const showScore = document.getElementById('score')
+// zombieColors.classList.add('image')
+// const candyGrid = document.querySelector('.candyGrid')
+// gridWidth = 8;
+// const clearGame = () => {
+//     const newSquare = document.querySelector('.candyGrid')
+//     while(newSquare.firstChild) {
+//         newSquare.removeChild(newSquare.firstChild)
+//     }
+// }
 
-    // create an empty array like tictactoe
-    const eachBox = []
-    let score = 0
-    // creating a time clock
-    let startingSeconds = 2
-    // let time = startingSeconds * 10
-    const countDown = document.getElementById('countTimer');
+// adding clear, new game button
+
+
+// const newGame = numberOfSquares => {
+
+//  for (let i = 0; i < gridWidth*gridWidth; i++) { //8x8 board (63 or gridWidth*gridWidth)
+//     // start creating a div for the square so each box has a square
+//     const square = document.createElement('div')
+//     //Figure out a way to drag them to a certain spot(RESEARCH)
+//     square.setAttribute('draggable', true) // Source (stackoverflow)
+//     //try find a way to figure out which one is being dragged by giving them class/id
+//     square.setAttribute('id', i) // loop over 15 times thats why theres an i
+//     // use the same random color theory as the div homework
+//     let randomColor = Math.floor(Math.random () * zombieColors.length) 
+//     square.style.backgroundColor = zombieColors[randomColor]
+//     candyGrid.appendChild(square)
+//     eachBox.push(square)
+// }
+// }
+const candyGrid = document.querySelector('.candyGrid')
+const gridWidth = 8
+
+const newP = document.createElement('p')
+newP.classList.add('gameOver')
+
+// Search up how to show Score
+const showScore = document.getElementById('score')
+
+// create an empty array like tictactoe
+const eachBox = []
+// starting the score at zero and globally declaring it
+let score = 0
+// creating a time clock
+let startingSeconds = 20
+// let time = startingSeconds * 10
+const countDown = document.getElementById('countTimer');
+
+        
+        
+        
+        document.addEventListener('DOMContentLoaded', () => {
+    //         const candyGrid = document.querySelector('.candyGrid')
+    //         const gridWidth = 8
+            
+    //         const newP = document.createElement('p')
+    //         newP.classList.add('gameOver')
+            
+    //         // Search up how to show Score
+    //         const showScore = document.getElementById('score')
+            
+    //         // create an empty array like tictactoe
+    //         const eachBox = []
+    //         // starting the score at zero and globally declaring it
+    //         let score = 0
+    //         // creating a time clock
+    //         let startingSeconds = 100
+    // // let time = startingSeconds * 10
+    // const countDown = document.getElementById('countTimer');
 
     // function for countdown timer
     let refreshClock = setInterval(updateTimer, 1000)
-    // let outClock = setTimeout(updateTimer, 5000)
+    
+    const clearGame = () => {
+        const newSquare = document.querySelector('.candyGrid')
+        while(newSquare.firstChild) {
+            newSquare.removeChild(newSquare.firstChild)
+        }
+    }
+  
+    const newGame = numberOfSquares => {
+    
+     for (let i = 0; i < gridWidth*gridWidth; i++) { 
+        
+        const square = document.createElement('div')
+        
+        square.setAttribute('draggable', true) 
+       
+        square.setAttribute('id', i)  
+        let randomColor = Math.floor(Math.random () * zombieColors.length) 
+        square.style.backgroundColor = zombieColors[randomColor]
+        candyGrid.appendChild(square)
+        eachBox.push(square)
+        startingSeconds = 30;
+       square.addEventListener('dragstart', dragStart) // click on image to drag
+       square.addEventListener('dragend', dragEnd) // after drag drop, you swap the two images
+    square.addEventListener('dragover', dragOver) // moving image around while its clicked
+     square.addEventListener('dragenter', dragEnter) // moving image onto another one
+       square.addEventListener('dragleave', dragLeave) // dragged image leaving another image
+       square.addEventListener('drop', dragDrop)
+       
+        
+    }
+    // createBoard()
+    eachColumn()
+    eachRow()
+    dragDrop()
+}
+
+
+
+   
+    
+    
     
     let gameState = true
     
@@ -29,48 +130,54 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (startingSeconds === -1) {
                     clearInterval(refreshClock)
                     //Adding a game over function
-                
+                    
                     gameState = false
                 if (gameState === false)  {
-
-                    candyGrid.innerText = `Game Over! Your score is ${score}! Try Again!`
-                    // candyGrid.style.fontSize = "2rem";
-                    candyGrid.classList.add('gameOver')
-                      
-                
-                  if (score >= 30)
-                    candyGrid.innerText = `Winner! Your score is ${score}` 
+                  if (score >= 35) {
+                    candyGrid.innerText = `Winner! Your score is ${score}!` 
                     candyGrid.classList.add('winWin')   
+                 } else {
+
+                     candyGrid.innerText = `Game Over! Your score is ${score}! Try Again!`
+                     
+                     candyGrid.classList.add('gameOver')
+                       
+                 }
+
+                
                     
                 }
             }
+            
+        }
         
-    }
-
-
-
-    //Declare the color and the matches
-    const zombieColors = [
-        'red',
-        'yellow',
-        'hotpink',
-        'purple',
-        'green'
-        // these are zombie images when we're ready to replace the colors with
-        // 'url(img/red-zombie.jpg)',
-        // 'url(img/yellow-zombie.jpg)',
-        // 'url(img/orange-zombie.jpg)',
-        // 'url(img/purple.zombie.jpg)',
-        // 'url(img/green-zombie.jpg)'
-    ]
-
+        
+        
+        
+        
+        //Declare the color and the matches
+        // const zombieColors = [
+        //     'red',
+        //     'yellow',
+        //     'hotpink',
+        //     'purple',
+        //     'green'
+        // ]
+        
 
 
     // create the board with for loops
+
     function createBoard () {
-        for(let i = 0; i < gridWidth*gridWidth; i++) { //6x6 board 
+        for(let i = 0; i < gridWidth*gridWidth; i++) { //8x8 board (63 or gridWidth*gridWidth)
             // start creating a div for the square so each box has a square
             const square = document.createElement('div')
+            square.addEventListener('dragstart', dragStart) // click on image to drag
+             square.addEventListener('dragend', dragEnd) // after drag drop, you swap the two images
+            square.addEventListener('dragover', dragOver) // moving image around while its clicked
+             square.addEventListener('dragenter', dragEnter)// moving image onto another one
+            square.addEventListener('dragleave', dragLeave) // dragged image leaving another image
+            square.addEventListener('drop', dragDrop)
             //Figure out a way to drag them to a certain spot(RESEARCH)
             square.setAttribute('draggable', true) // Source (stackoverflow)
             //try find a way to figure out which one is being dragged by giving them class/id
@@ -80,6 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
             square.style.backgroundColor = zombieColors[randomColor]
             candyGrid.appendChild(square)
             eachBox.push(square)
+        
         }
     }
     createBoard()
@@ -89,12 +197,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let squareIdBeingDragged;
     let squareIdBeingReplaced;
 
-    eachBox.forEach(square => square.addEventListener('dragstart', dragStart)) // click on image to drag
-    eachBox.forEach(square => square.addEventListener('dragend', dragEnd)) // after drag drop, you swap the two images
-    eachBox.forEach(square => square.addEventListener('dragover', dragOver)) // moving image around while its clicked
-    eachBox.forEach(square => square.addEventListener('dragenter', dragEnter)) // moving image onto another one
-    eachBox.forEach(square => square.addEventListener('dragleave', dragLeave)) // dragged image leaving another image
-    eachBox.forEach(square => square.addEventListener('drop', dragDrop)) // drag image over another image, and then drop it on top of it
+    // eachBox.forEach(square => square.addEventListener('dragstart', dragStart)) // click on image to drag
+    // eachBox.forEach(square => square.addEventListener('dragend', dragEnd)) // after drag drop, you swap the two images
+    // eachBox.forEach(square => square.addEventListener('dragover', dragOver)) // moving image around while its clicked
+    // eachBox.forEach(square => square.addEventListener('dragenter', dragEnter)) // moving image onto another one
+    // eachBox.forEach(square => square.addEventListener('dragleave', dragLeave)) // dragged image leaving another image
+    // eachBox.forEach(square => square.addEventListener('drop', dragDrop)) // drag image over another image, and then drop it on top of it
 
     //Figure out a way where if you hover the color to the next, it'll change the color
  // this.id refers to that id of the function indepently than the entire thing.
@@ -141,15 +249,21 @@ document.addEventListener('DOMContentLoaded', () => {
          squareIdBeingDragged +1, 
          squareIdBeingDragged +gridWidth,
         ]
-    
+
+ 
+    // if its true then the square would be replaced
     let theMove = theMoves.includes(squareIdBeingReplaced)
     if(squareIdBeingReplaced && theMove) {
         squareIdBeingReplaced = null
-    } else if (squareIdBeingReplaced && !theMove) {
+    } else if (squareIdBeingReplaced && !theMove) { //if not valid
         eachBox[squareIdBeingReplaced].style.backgroundColor = colorBeingReplaced
         eachBox[squareIdBeingDragged].style.backgroundColor = colorBeingDragged
     }else eachBox[squareIdBeingDragged].style.backgroundColor = colorBeingDragged
 }
+
+
+
+
     
 
 // figure out how to get scores now with the rows
@@ -159,10 +273,11 @@ function eachRow () {
         let threeRow = [i, i+1, i+2]
         let theColor = eachBox[i].style.backgroundColor
         const ifBlank = eachBox[i].style.backgroundColor === ''
+
             // figure out a way to stop the row's from splitting the match aka 2 and 1 on different row
-        
+            // this prevents the row at the end to not have 2 square = match
         const notRow = [6, 7, 14, 15, 22, 23 ,30 ,31, 38, 39, 46, 47, 54, 55]  
-        if (notRow.includes(i)) continue
+        if (notRow.includes(i)) continue // skipping the numbers if it includes
         
 
         if (threeRow.every(index => eachBox[index].style.backgroundColor === theColor && !ifBlank)) {
@@ -198,11 +313,48 @@ function eachColumn () {
 eachColumn()
 
 
+
+
+document.querySelector('#clear-button').addEventListener('click',clearGame)
+document.getElementById('play-again').addEventListener('click', () => {
+    window.location.reload(); // refreshing the whole window
+    clearGame()
+    // newGame()
+})
+
+
+
+
+// Find a way to replace the empty space with more square's
+// function xtraCandies () {
+
+// }
+
+
 // constantly continues the pages in 100ms 
 window.setInterval( () => {
     eachRow ()
     eachColumn()
 }, 100)
+
+
+
+
+// const startTimer = document.getElementById('start')
+
+// function startTime () {
+//     startTimer = window.setInterval() => {
+        
+//     }
+// }
+// const clearGame = () => {
+//     const newSquare = document.querySelector('.candyGrid')
+//     while(newSquare.firstChild) {
+//         newSquare.removeChild(newSquare.firstChild)
+//     }
+// }
+
+
 
 
 
@@ -215,7 +367,7 @@ window.setInterval( () => {
 
 
 
-})
+}) // DOM curly bracket
 
 
 

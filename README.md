@@ -3,14 +3,15 @@
 <h2>Whats the game about?</h2>
 
 Match the candy in a row and match up with them! 
-The more matches the more points you get!
+The more matches the more points you get! 
+Must get 30 points before the time end to win!
 
 ![Wireframe](./img/candycrush.jpg)
 
 <h3>MVP<h3>
 
 <ul>
-<li>create a grid 3x3</li>
+<li>create a grid 8x8</li>
 <li> create the color to match with each other</li>
 <li>3 same match = points</li>
 <li>create a scoreboard</li>
@@ -18,6 +19,7 @@ The more matches the more points you get!
 
 <h4>Stretch</h4>
 <ul>
+<li>Create level 2 where there is limited turns</li>
 <li>Create better graphics</li>
 <li>more realistic grid</li>
 <li>create different levels(easy, medium, hardmode)</li>
