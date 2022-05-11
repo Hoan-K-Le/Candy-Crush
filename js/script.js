@@ -1,13 +1,13 @@
 
   const zombieColors = [
-    "url('../img/zombie1.jpeg')",
+     'red',
     'yellow',
     'hotpink',
     'purple',
     'lightblue'
 ]
 
-// zombieColors.classList.add('image')
+
 // const candyGrid = document.querySelector('.candyGrid')
 // gridWidth = 8;
 // const clearGame = () => {
@@ -133,7 +133,7 @@ const countDown = document.getElementById('countTimer');
                     
                     gameState = false
                 if (gameState === false)  {
-                  if (score >= 35) {
+                  if (score >= 100) {
                     candyGrid.innerText = `Winner! Your score is ${score}!` 
                     candyGrid.classList.add('winWin')   
                  } else {
