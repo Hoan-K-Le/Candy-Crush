@@ -5,7 +5,7 @@ https://hoan-k-le.github.io/Zombie-Candy-Crush/
 
 Match the candy in a row and match up with them! 
 The more matches the more points you get! 
-Must get 30 points before the time end to win!
+Must get 35 points before the time end to win!
 
 ![Wireframe](./img/candycrush.jpg)
 
