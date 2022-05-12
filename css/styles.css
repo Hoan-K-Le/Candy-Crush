@@ -72,6 +72,10 @@ h1 {
     justify-content: center;
 }
 
+h2 {
+    color: hotpink;
+}
+
 body {
 
     background-image: url(../img/newzombie-background.jpeg);

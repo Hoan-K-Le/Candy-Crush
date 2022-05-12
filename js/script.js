@@ -7,37 +7,10 @@
     'lightblue'
 ]
 
+// creating instruction
 
-
-
-// const candyGrid = document.querySelector('.candyGrid')
-// gridWidth = 8;
-// const clearGame = () => {
-//     const newSquare = document.querySelector('.candyGrid')
-//     while(newSquare.firstChild) {
-//         newSquare.removeChild(newSquare.firstChild)
-//     }
-// }
-
-// adding clear, new game button
-
-
-// const newGame = numberOfSquares => {
-
-//  for (let i = 0; i < gridWidth*gridWidth; i++) { //8x8 board (63 or gridWidth*gridWidth)
-//     // start creating a div for the square so each box has a square
-//     const square = document.createElement('div')
-//     //Figure out a way to drag them to a certain spot(RESEARCH)
-//     square.setAttribute('draggable', true) // Source (stackoverflow)
-//     //try find a way to figure out which one is being dragged by giving them class/id
-//     square.setAttribute('id', i) // loop over 15 times thats why theres an i
-//     // use the same random color theory as the div homework
-//     let randomColor = Math.floor(Math.random () * zombieColors.length) 
-//     square.style.backgroundColor = zombieColors[randomColor]
-//     candyGrid.appendChild(square)
-//     eachBox.push(square)
-// }
-// }
+const instructionBtn = document.getElementById('instruction-btn')
+const instructionContainer = document.getElementById('instructionContainer')
 
 
 const candyGrid = document.querySelector('.candyGrid')
@@ -56,7 +29,7 @@ const eachBox = []
 let score = 0
 
 // creating a time clock
-let startingSeconds = 15
+let startingSeconds = 20
 
 
 const countDown = document.getElementById('countTimer');
@@ -66,6 +39,23 @@ const countDown = document.getElementById('countTimer');
         
         document.addEventListener('DOMContentLoaded', () => {
 
+            //instructions
+    // instructionBtn.addEventListener('click', () => {
+    //     instructionContainer.scrollIntoView(true)
+    // })
+
+
+            //Instruction buttons
+    instructionBtn.addEventListener('click', () => {
+        if(instructionContainer.style.display === 'none'){
+            instructionContainer.style.display = 'block';
+        } else {
+            instructionContainer.style.display = 'none';
+        }
+    })
+
+// function for instructions
+    
 
     // function for countdown timer
     let refreshClock = setInterval(updateTimer, 1000)
@@ -96,7 +86,7 @@ const countDown = document.getElementById('countTimer');
     square.addEventListener('dragover', dragOver) // moving image around while its clicked
      square.addEventListener('dragenter', dragEnter) // moving image onto another one
        square.addEventListener('dragleave', dragLeave) // dragged image leaving another image
-       square.addEventListener('drop', dragDrop)
+       square.addEventListener('drop', dragDrop) // dragging image over another image, then dropping it on top of it
        
         
     }
@@ -157,7 +147,7 @@ const countDown = document.getElementById('countTimer');
         
 
 
-    // create the board with for loops
+    // create the board using for loops
 
     function createBoard () {
         for(let i = 0; i < gridWidth*gridWidth; i++) { //8x8 board (63 or gridWidth*gridWidth)
@@ -257,7 +247,7 @@ const countDown = document.getElementById('countTimer');
 
 
 
-    
+
 
 // figure out how to get scores now with the rows
 
