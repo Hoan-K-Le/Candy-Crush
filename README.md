@@ -3,7 +3,7 @@ https://hoan-k-le.github.io/Zombie-Candy-Crush/
 
 <h2>Whats the game about?</h2>
 
-Match the candy in a row and match up with them! 
+Match the zombies in a row and match up with them! 
 The more matches the more points you get! 
 Must get 35 points before the time end to win!
 
@@ -13,7 +13,7 @@ Must get 35 points before the time end to win!
 
 <ul>
 <li>create a grid 8x8</li>
-<li> create the color to match with each other</li>
+<li> create the zombies to match with each other</li>
 <li>3 same match = points</li>
 <li>create a scoreboard</li>
 <ul>
