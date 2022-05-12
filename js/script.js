@@ -1,4 +1,4 @@
-
+// images of the square's
   const zombieColors = [
       'url(img/zombie1.jpeg)',
       'url(img/zombie2.png)',
@@ -17,6 +17,7 @@
 const instructionBtn = document.getElementById('instruction-btn')
 const instructionContainer = document.getElementById('instructionContainer')
 
+instructionContainer.classList.add('instructionHide')
 
 const candyGrid = document.querySelector('.candyGrid')
 const gridWidth = 8
@@ -150,7 +151,7 @@ const countDown = document.getElementById('countTimer');
             //Figure out a way to drag them to a certain spot(RESEARCH)
             square.setAttribute('draggable', true) // Source (stackoverflow)
             //try find a way to figure out which one is being dragged by giving them class/id
-            square.setAttribute('id', i) // loop over 15 times
+            square.setAttribute('id', i) 
             // use the same random color theory as the div homework
             let randomColor = Math.floor(Math.random () * zombieColors.length) 
             square.style.backgroundImage = zombieColors[randomColor] // where i made the square into random colors

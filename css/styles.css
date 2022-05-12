@@ -16,6 +16,11 @@
     background-size: cover;
 }
 
+.instructionHide {
+    display: none;
+    /* visibility: hidden; */
+}
+
 
 
 
