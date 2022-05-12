@@ -1,10 +1,15 @@
 
   const zombieColors = [
-     'red',
-    'yellow',
-    'hotpink',
-    'purple',
-    'lightblue'
+      'url(img/zombie1.jpeg)',
+      'url(img/zombie2.png)',
+      'url(img/zombie3.jpeg)',
+      'url(img/zombie4.jpeg)',
+      'url(img/zombie5.png)',
+    //  'red',
+    // 'yellow',
+    // 'hotpink',
+    // 'purple',
+    // 'lightblue'
 ]
 
 // creating instruction
@@ -38,17 +43,14 @@ const countDown = document.getElementById('countTimer');
         
         
         document.addEventListener('DOMContentLoaded', () => {
-
-            //instructions
-    // instructionBtn.addEventListener('click', () => {
-    //     instructionContainer.scrollIntoView(true)
-    // })
-
+            // zombieColors.classList.add('image')
+        
+    
 
             //Instruction buttons
     instructionBtn.addEventListener('click', () => {
         if(instructionContainer.style.display === 'none'){
-            instructionContainer.style.display = 'block';
+            instructionContainer.style.display = 'inline-block';
         } else {
             instructionContainer.style.display = 'none';
         }
@@ -77,13 +79,13 @@ const countDown = document.getElementById('countTimer');
        
         square.setAttribute('id', i)  
         let randomColor = Math.floor(Math.random () * zombieColors.length) 
-        square.style.backgroundColor = zombieColors[randomColor]
+        square.style.backgroundImage = zombieColors[randomColor]
         candyGrid.appendChild(square)
         eachBox.push(square)
         startingSeconds = 30;
        square.addEventListener('dragstart', dragStart) // click on image to drag
        square.addEventListener('dragend', dragEnd) // after drag drop, you swap the two images
-    square.addEventListener('dragover', dragOver) // moving image around while its clicked
+     square.addEventListener('dragover', dragOver) // moving image around while its clicked
      square.addEventListener('dragenter', dragEnter) // moving image onto another one
        square.addEventListener('dragleave', dragLeave) // dragged image leaving another image
        square.addEventListener('drop', dragDrop) // dragging image over another image, then dropping it on top of it
@@ -131,20 +133,6 @@ const countDown = document.getElementById('countTimer');
             }
             
         }
-        
-        
-        
-        
-        
-        //Declare the color and the matches
-        // const zombieColors = [
-        //     'red',
-        //     'yellow',
-        //     'hotpink',
-        //     'purple',
-        //     'green'
-        // ]
-        
 
 
     // create the board using for loops
@@ -165,7 +153,7 @@ const countDown = document.getElementById('countTimer');
             square.setAttribute('id', i) // loop over 15 times
             // use the same random color theory as the div homework
             let randomColor = Math.floor(Math.random () * zombieColors.length) 
-            square.style.backgroundColor = zombieColors[randomColor] // where i made the square into random colors
+            square.style.backgroundImage = zombieColors[randomColor] // where i made the square into random colors
             candyGrid.appendChild(square) // create square's in the grid
             eachBox.push(square)
         
@@ -190,7 +178,7 @@ const countDown = document.getElementById('countTimer');
     //Figure out a way where if you hover the color to the next, it'll change the color
  // this.id refers to that id of the function indepently than the entire thing.
     function dragStart() {
-        colorBeingDragged = this.style.backgroundColor
+        colorBeingDragged = this.style.backgroundImage
         squareIdBeingDragged = parseInt(this.id)
         // console.log(colorBeingDragged)
         // console.log(this.id, 'dragstart')
@@ -217,10 +205,10 @@ const countDown = document.getElementById('countTimer');
     
     function dragDrop() {
         // console.log(this.id, 'drop')
-        colorBeingReplaced = this.style.backgroundColor
+        colorBeingReplaced = this.style.backgroundImage
         squareIdBeingReplaced = parseInt(this.id)
-        this.style.backgroundColor = colorBeingDragged
-        eachBox[squareIdBeingDragged].style.backgroundColor = colorBeingReplaced // refer to etch-sketch notes where you replace the color
+        this.style.backgroundImage = colorBeingDragged
+        eachBox[squareIdBeingDragged].style.backgroundImage = colorBeingReplaced // refer to etch-sketch notes where you replace the color
     }
     
     function dragEnd() {
@@ -239,9 +227,9 @@ const countDown = document.getElementById('countTimer');
     if(squareIdBeingReplaced && theMove) {
         squareIdBeingReplaced = null
     } else if (squareIdBeingReplaced && !theMove) { //if not valid
-        eachBox[squareIdBeingReplaced].style.backgroundColor = colorBeingReplaced
-        eachBox[squareIdBeingDragged].style.backgroundColor = colorBeingDragged
-    }else eachBox[squareIdBeingDragged].style.backgroundColor = colorBeingDragged
+        eachBox[squareIdBeingReplaced].style.backgroundImage = colorBeingReplaced
+        eachBox[squareIdBeingDragged].style.backgroundImage = colorBeingDragged
+    }else eachBox[squareIdBeingDragged].style.backgroundImage = colorBeingDragged
 }
 
 
@@ -254,8 +242,8 @@ const countDown = document.getElementById('countTimer');
 function eachRow () {
     for (let i = 0; i < 61; i++) {
         let threeRow = [i, i+1, i+2]
-        let theColor = eachBox[i].style.backgroundColor
-        const ifBlank = eachBox[i].style.backgroundColor === ''
+        let theColor = eachBox[i].style.backgroundImage
+        const ifBlank = eachBox[i].style.backgroundImage === ''
 
             // figure out a way to stop the row's from splitting the match aka 2 and 1 on different row
             // this prevents the row at the end to not have 2 square = match
@@ -263,11 +251,11 @@ function eachRow () {
         if (notRow.includes(i)) continue 
         
 
-        if (threeRow.every(index => eachBox[index].style.backgroundColor === theColor && !ifBlank)) {
+        if (threeRow.every(index => eachBox[index].style.backgroundImage === theColor && !ifBlank)) {
             score += 3
             showScore.innerHTML = score
             threeRow.forEach(index => {
-                eachBox[index].style.backgroundColor = ''
+                eachBox[index].style.backgroundImage = ''
             })
         }
     }
@@ -280,15 +268,15 @@ eachRow()
 function eachColumn () {
     for (let i = 0; i < 47; i++) {
         let threeColumn = [i, i+gridWidth, i+gridWidth*2]
-        let theColor = eachBox[i].style.backgroundColor
-        const ifBlank = eachBox[i].style.backgroundColor === ''
+        let theColor = eachBox[i].style.backgroundImage
+        const ifBlank = eachBox[i].style.backgroundImage === ''
 
 
-        if (threeColumn.every(index => eachBox[index].style.backgroundColor === theColor && !ifBlank)) {
+        if (threeColumn.every(index => eachBox[index].style.backgroundImage === theColor && !ifBlank)) {
             score += 3
             showScore.innerHTML = score
             threeColumn.forEach(index => {
-                eachBox[index].style.backgroundColor = ''
+                eachBox[index].style.backgroundImage = ''
             })
         }
     }
@@ -353,11 +341,7 @@ window.setInterval( () => {
 
 
 
-// stretch 
-// build gravity so when it matches = blocks fall down
-// each square = picture of zombie
-// high score replacement
-// game over = bug splat in bugged
+
 
 
 
