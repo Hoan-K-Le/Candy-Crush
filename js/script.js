@@ -12,12 +12,16 @@
     // 'lightblue'
 ]
 
-// Animation text
+
+// Animation text for fun
+
 const text = document.querySelector('.fancy')
 const strText = text.textContent;
-const splitText = strText.split("")
-text.textContent = "";
+const splitText = strText.split("") // splitting the letter
+text.textContent = ""; // so it does not repeat the words
 // console.log(splitText)
+
+// looping over each letter
 for(let i = 0; i < splitText.length; i++) {
     text.innerHTML += "<span>" + splitText[i] + "</span"
 }
@@ -31,7 +35,7 @@ function onTick () {
     span.classList.add('fade');
     char++ // run every 50 ms
     if(char === splitText.length) {
-        complete();
+      complete()
         return
     }
 }
@@ -74,8 +78,9 @@ const countDown = document.getElementById('countTimer');
         
         
         document.addEventListener('DOMContentLoaded', () => {
-            // zombieColors.classList.add('image')
         
+
+            
 
             //Instruction buttons
     instructionBtn.addEventListener('click', () => {
@@ -86,10 +91,7 @@ const countDown = document.getElementById('countTimer');
         }
     })
 
-// function for instructions
     
-
-    // function for countdown timer
     let refreshClock = setInterval(updateTimer, 1000)
     
     const clearGame = () => {
@@ -98,29 +100,29 @@ const countDown = document.getElementById('countTimer');
             newSquare.removeChild(newSquare.firstChild)
         }
     }
-  
+    
     const newGame = numberOfSquares => {
     
-     for (let i = 0; i < gridWidth*gridWidth; i++) { 
-        
-        const square = document.createElement('div')
-        
-        square.setAttribute('draggable', true) 
-       
-        square.setAttribute('id', i)  
-        let randomColor = Math.floor(Math.random () * zombieColors.length) 
-        square.style.backgroundImage = zombieColors[randomColor]
-        candyGrid.appendChild(square)
-        eachBox.push(square)
-        startingSeconds = 30;
-       square.addEventListener('dragstart', dragStart) // click on image to drag
-       square.addEventListener('dragend', dragEnd) // after drag drop, you swap the two images
-     square.addEventListener('dragover', dragOver) // moving image around while its clicked
-     square.addEventListener('dragenter', dragEnter) // moving image onto another one
-       square.addEventListener('dragleave', dragLeave) // dragged image leaving another image
-       square.addEventListener('drop', dragDrop) // dragging image over another image, then dropping it on top of it
-       
-        
+        for (let i = 0; i < gridWidth*gridWidth; i++) { 
+            
+            const square = document.createElement('div')
+            
+            square.setAttribute('draggable', true) 
+            
+            square.setAttribute('id', i)  
+            let randomColor = Math.floor(Math.random () * zombieColors.length) 
+            square.style.backgroundImage = zombieColors[randomColor]
+            candyGrid.appendChild(square)
+            eachBox.push(square)
+            startingSeconds = 30;
+            square.addEventListener('dragstart', dragStart) // click on image to drag
+            square.addEventListener('dragend', dragEnd) // after drag drop, you swap the two images
+            square.addEventListener('dragover', dragOver) // moving image around while its clicked
+            square.addEventListener('dragenter', dragEnter) // moving image onto another one
+            square.addEventListener('dragleave', dragLeave) // dragged image leaving another image
+            square.addEventListener('drop', dragDrop) // dragging image over another image, then dropping it on top of it
+            
+            
     }
     // createBoard()
     eachColumn()
@@ -130,18 +132,19 @@ const countDown = document.getElementById('countTimer');
 
 
 
-   
-    
-    
-  
-    
-    let gameState = true
-    
+const tongueZombie = document.querySelector('.titleContainer')
+
+
+// function for countdown timer
+
+let gameState = true
+
     function updateTimer () {
         countDown.innerHTML = `${startingSeconds}`; // this starts the timer
         startingSeconds --;
                 if (startingSeconds <= 4) {
                     countDown.style.color = 'red'
+
                 }
                 if (startingSeconds === -1) {
                     clearInterval(refreshClock)
@@ -149,15 +152,15 @@ const countDown = document.getElementById('countTimer');
                     
                     gameState = false
                 if (gameState === false)  {
-                  if (score >= 30) {
+                  if (score >= 35) {
                     candyGrid.innerText = `Winner! Your score is ${score}!` 
                     candyGrid.classList.add('winWin')   
                  } else {
-
+                     gameOverSound.play()
                      candyGrid.innerText = `Game Over! Your score is ${score}! Try Again!`
-                     
                      candyGrid.classList.add('gameOver')
-                       
+                     
+                      
                  }
 
                 

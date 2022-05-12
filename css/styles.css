@@ -38,7 +38,7 @@
     /* background-color: red; */
     margin: 0px 500px;
     /* border: 2rem; */
-    border-radius: 50%;
+    border-radius: 100%;
     /* background-size: 10; */
 }
 
@@ -51,8 +51,6 @@
 
 .img {
     border-radius: 100%;
-    /* background-color: red; */
-    /* background-size: 10rem; */
 }
 
 #countTimer {
@@ -150,13 +148,13 @@ body {
 
 span {
     opacity: 0;
-    transition: all 0.5s ease;
+    transition: all 0.5s ease; 
     transform: translateY(50px);
-    display: inline-block;
+     /* display: inline-block; */
 }
 
 span.fade{
     opacity: 1;
     transform: translateY(0px);
-    color: red;
+    color: rgb(206, 70, 70);
 }
