@@ -104,20 +104,23 @@ const countDown = document.getElementById('countTimer');
    
     
     
+  
     
     let gameState = true
     
     function updateTimer () {
         countDown.innerHTML = `${startingSeconds}`; // this starts the timer
         startingSeconds --;
-        
+                if (startingSeconds <= 4) {
+                    countDown.style.color = 'red'
+                }
                 if (startingSeconds === -1) {
                     clearInterval(refreshClock)
                     //Adding a game over function
                     
                     gameState = false
                 if (gameState === false)  {
-                  if (score >= 35) {
+                  if (score >= 30) {
                     candyGrid.innerText = `Winner! Your score is ${score}!` 
                     candyGrid.classList.add('winWin')   
                  } else {

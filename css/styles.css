@@ -8,6 +8,10 @@
     text-align: center;
 }
 
+.fontColor {
+    color: red;
+}
+
 .candyGrid div {
     height: 70px;
     width: 70px;
