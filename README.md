@@ -1,4 +1,4 @@
-# Candy Crush!
+# Zombie Candy Crush!
 https://hoan-k-le.github.io/Zombie-Candy-Crush/
 
 ## What the game is about
