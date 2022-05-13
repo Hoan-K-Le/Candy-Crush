@@ -69,7 +69,7 @@ const eachBox = []
 let score = 0
 
 // creating a time clock
-let startingSeconds = 1
+let startingSeconds = 20
 
 
 const countDown = document.getElementById('countTimer');
