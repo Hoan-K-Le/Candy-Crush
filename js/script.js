@@ -13,9 +13,10 @@
 ]
 
 const loseSound = new Audio ('./img/gameover.mp3')
-loseSound.volume = .2
+loseSound.volume = 0.2
 const winSound = new Audio ('./img/victory.mp3')
-winSound.volume = .2
+winSound.volume = 0.2
+
 
 // Animation text for fun
 
