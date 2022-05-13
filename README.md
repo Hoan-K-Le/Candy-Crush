@@ -10,7 +10,6 @@ Must get 35 points before the time end to win!
 ![Wireframe](./img/candycrush.jpg)
 
 <h3>MVP<h3>
-
 <ul>
 <li>Create a grid 8x8</li>
 <li> Create the zombies to match with each other</li>
@@ -28,12 +27,13 @@ Must get 35 points before the time end to win!
   <li> add better obstacles</li>
 </ul>
 
-<h4> Potential Roadblocks</h4>
-  <ul>
-    <li>Not sure yet, will happen when it happens</li>
-  </ul>
-
-
 <h4>Type of Tech</h4>
 HTML, CSS, Javascript
+
+<h5>Sources</h5>
+<ul>
+<li>StackOverFlow</li>
+<li>Video's| https://www.youtube.com/watch?v=sD3Os4H_EOU&ab_channel=KennyYipCoding</li>
+<>
+</ul>
   
