@@ -69,7 +69,7 @@ const eachBox = []
 let score = 0
 
 // creating a time clock
-let startingSeconds = 20
+let startingSeconds = 1
 
 
 const countDown = document.getElementById('countTimer');
@@ -156,7 +156,6 @@ let gameState = true
                     candyGrid.innerText = `Winner! Your score is ${score}!` 
                     candyGrid.classList.add('winWin')   
                  } else {
-                     gameOverSound.play()
                      candyGrid.innerText = `Game Over! Your score is ${score}! Try Again!`
                      candyGrid.classList.add('gameOver')
                      
