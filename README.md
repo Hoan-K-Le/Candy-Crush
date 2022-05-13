@@ -20,11 +20,11 @@ Must get 35 points before the time end to win!
 
 ## Stretch
 
--Create level 2 where there is limited turns
--Create better graphics
--more realistic grid
--create different levels(easy, medium, hardmode)
-- add better obstacles
+ -Create level 2 where there is limited turns
+ -Create better graphics
+ -More realistic grid
+ -Create different levels(easy, medium, hardmode)
+ -Add better obstacles
 
 
 ## Type of tech

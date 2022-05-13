@@ -63,7 +63,7 @@ newP.classList.add('gameOver')
 const showScore = document.getElementById('score')
 
 // create an empty array like tictactoe
-const eachBox = []
+const eachBox = [] // where we can our div in the array
 
 // starting the score at zero and globally declaring it
 let score = 0
@@ -215,13 +215,12 @@ let gameState = true
     function dragStart() {
         colorBeingDragged = this.style.backgroundImage
         squareIdBeingDragged = parseInt(this.id)
-        // console.log(colorBeingDragged)
-        // console.log(this.id, 'dragstart')
+      
     }
     
     function dragOver(e) {
         e.preventDefault()
-        // console.log(this.id, 'dragover')
+       
     }
     
     
@@ -233,13 +232,13 @@ let gameState = true
     
     
     function dragLeave() {
-        // console.log(this.id, 'dragleave')
+        
     }
     
     
     
     function dragDrop() {
-        // console.log(this.id, 'drop')
+        
         colorBeingReplaced = this.style.backgroundImage
         squareIdBeingReplaced = parseInt(this.id)
         this.style.backgroundImage = colorBeingDragged
@@ -247,7 +246,7 @@ let gameState = true
     }
     
     function dragEnd() {
-        // console.log(this.id, 'dragend')
+        
 
     let theMoves = [
          squareIdBeingDragged -1,
@@ -260,8 +259,8 @@ let gameState = true
     // if its true then the square would be replaced
     let theMove = theMoves.includes(squareIdBeingReplaced)
     if(squareIdBeingReplaced && theMove) {
-        squareIdBeingReplaced = null
-    } else if (squareIdBeingReplaced && !theMove) { //if not valid
+        squareIdBeingReplaced = null // clear the value being replace
+    } else if (squareIdBeingReplaced && !theMove) { //if not valid move or if the image is too far 
         eachBox[squareIdBeingReplaced].style.backgroundImage = colorBeingReplaced
         eachBox[squareIdBeingDragged].style.backgroundImage = colorBeingDragged
     }else eachBox[squareIdBeingDragged].style.backgroundImage = colorBeingDragged
@@ -275,7 +274,7 @@ let gameState = true
 // figure out how to get scores now with the rows
 
 function eachRow () {
-    for (let i = 0; i < 61; i++) {
+    for (let i = 0; i < 61; i++) { // last square to loop is 61 
         let threeRow = [i, i+1, i+2]
         let theColor = eachBox[i].style.backgroundImage
         const ifBlank = eachBox[i].style.backgroundImage === ''
@@ -285,7 +284,7 @@ function eachRow () {
         const notRow = [6, 7, 14, 15, 22, 23 ,30 ,31, 38, 39, 46, 47, 54, 55]   
         if (notRow.includes(i)) continue 
         
-
+        // for every 3 matches it'll give us an empty background color
         if (threeRow.every(index => eachBox[index].style.backgroundImage === theColor && !ifBlank)) {
             score += 3
             showScore.innerHTML = score
