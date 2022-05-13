@@ -12,6 +12,10 @@
     // 'lightblue'
 ]
 
+const loseSound = new Audio ('./img/gameover.mp3')
+loseSound.volume = .2
+const winSound = new Audio ('./img/victory.mp3')
+winSound.volume = .2
 
 // Animation text for fun
 
@@ -155,9 +159,11 @@ let gameState = true
                   if (score >= 35) {
                     candyGrid.innerText = `Winner! Your score is ${score}!` 
                     candyGrid.classList.add('winWin')   
+                    winSound.play();
                  } else {
                      candyGrid.innerText = `Game Over! Your score is ${score}! Try Again!`
                      candyGrid.classList.add('gameOver')
+                     loseSound.play();
                      
                       
                  }
