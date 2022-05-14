@@ -68,10 +68,10 @@ newP.classList.add('gameOver')
 const showScore = document.getElementById('score')
 
 // create an empty array like tictactoe
-const eachBox = [] // where we can our div in the array
+let eachBox = [] // where we can our div in the array
 
 // starting the score at zero and globally declaring it
-let score = 0
+let score = 0;
 
 // creating a time clock
 let startingSeconds = 20
@@ -106,36 +106,23 @@ const countDown = document.getElementById('countTimer');
         }
     }
     
-    const newGame = numberOfSquares => {
-    
-        for (let i = 0; i < gridWidth*gridWidth; i++) { 
-            
-            const square = document.createElement('div')
-            
-            square.setAttribute('draggable', true) 
-            
-            square.setAttribute('id', i)  
-            let randomColor = Math.floor(Math.random () * zombieColors.length) 
-            square.style.backgroundImage = zombieColors[randomColor]
-            candyGrid.appendChild(square)
-            eachBox.push(square)
-            startingSeconds = 30;
-            square.addEventListener('dragstart', dragStart) // click on image to drag
-            square.addEventListener('dragend', dragEnd) // after drag drop, you swap the two images
-            square.addEventListener('dragover', dragOver) // moving image around while its clicked
-            square.addEventListener('dragenter', dragEnter) // moving image onto another one
-            square.addEventListener('dragleave', dragLeave) // dragged image leaving another image
-            square.addEventListener('drop', dragDrop) // dragging image over another image, then dropping it on top of it
-            
-            
-    }
-    // createBoard()
-    eachColumn()
-    eachRow()
-    dragDrop()
-}
+    function reset() {
+        clearGame()
+        startingSeconds = 20;
+        clearInterval(refreshClock)
+        refreshClock = setInterval(updateTimer, 1000)
+        score = 0;
+        eachBox = [];
+           createBoard()
+           dragStart()
+           dragDrop()
+           dragEnd()
+           dragLeave()
+           dragOver()
+           eachRow()
+           eachColumn()
 
-
+          }
 
 const tongueZombie = document.querySelector('.titleContainer')
 
@@ -328,11 +315,8 @@ eachColumn()
 
 
 document.querySelector('#clear-button').addEventListener('click',clearGame)
-document.getElementById('play-again').addEventListener('click', () => {
-    window.location.reload(); // refreshing the whole window
-    clearGame()
-    // newGame()
-})
+document.getElementById('play-again').addEventListener('click',reset)
+    // window.location.reload(); // refreshing the whole window
 
 
 
@@ -352,27 +336,6 @@ window.setInterval( () => {
 
 
 
-// const startTimer = document.getElementById('start')
-
-// function startTime () {
-//     startTimer = window.setInterval() => {
-        
-//     }
-// }
-// const clearGame = () => {
-//     const newSquare = document.querySelector('.candyGrid')
-//     while(newSquare.firstChild) {
-//         newSquare.removeChild(newSquare.firstChild)
-//     }
-// }
-
-
-
-
-
-
-//game win/lose 
-// reset button
 
 
 
