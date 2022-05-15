@@ -12,10 +12,16 @@
     // 'lightblue'
 ]
 
+ // this lets me know where its being drag to and at which position.
+ let colorBeingDragged;
+ let colorBeingReplaced;
+ let squareIdBeingDragged;
+ let squareIdBeingReplaced;
+
 const loseSound = new Audio ('./img/gameover.mp3')
 loseSound.volume = 0.2
 const winSound = new Audio ('./img/victory.mp3')
-winSound.volume = 0.2
+winSound.volume = 0.4
 
 
 // Animation text for fun
@@ -110,21 +116,28 @@ const countDown = document.getElementById('countTimer');
         clearGame()
         startingSeconds = 20;
         clearInterval(refreshClock)
+        if (startingSeconds < 4) {
+            countDown.style.color = 'red'
+
+        } else {
+            countDown.style.color = 'white'
+        }
         refreshClock = setInterval(updateTimer, 1000)
         score = 0;
         eachBox = [];
-           createBoard()
-           dragStart()
-           dragDrop()
-           dragEnd()
-           dragLeave()
-           dragOver()
-           eachRow()
-           eachColumn()
+        createBoard();
+         dragStart();
+         dragEnter();
+         dragDrop();
+         dragEnd();
+         dragLeave();
+         dragOver();
+         eachRow();
+         eachColumn();
 
           }
 
-const tongueZombie = document.querySelector('.titleContainer')
+// const tongueZombie = document.querySelector('.titleContainer')
 
 
 // function for countdown timer
@@ -191,11 +204,11 @@ let gameState = true
     createBoard()
 
 
-    // this lets me know where its being drag to and at which position.
-    let colorBeingDragged;
-    let colorBeingReplaced;
-    let squareIdBeingDragged;
-    let squareIdBeingReplaced;
+    // // this lets me know where its being drag to and at which position.
+    // let colorBeingDragged;
+    // let colorBeingReplaced;
+    // let squareIdBeingDragged;
+    // let squareIdBeingReplaced;
 
     // eachBox.forEach(square => square.addEventListener('dragstart', dragStart)) // click on image to drag
     // eachBox.forEach(square => square.addEventListener('dragend', dragEnd)) // after drag drop, you swap the two images
