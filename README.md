@@ -20,8 +20,8 @@ Must get 35 points before the time end to win!
 
 ## Stretch
 <ul>
- <li>Create level 2 where there is limited turns<li>
- <li>Create better graphics<li>
+ <li>Create level 2 where there is limited turns</li>
+ <li>Create better graphics</li>
  <li>More realistic grid</li>
  <li>Create different levels(easy, medium, hardmode)</li>
  <li>Add better obstacles</li>
