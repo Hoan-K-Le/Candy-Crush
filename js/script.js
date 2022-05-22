@@ -137,8 +137,20 @@ const countDown = document.getElementById('countTimer');
 
           }
 
-// const tongueZombie = document.querySelector('.titleContainer')
-
+// drop the candies 
+function moveDownZombies() {
+    for(i=0; i<55; i++)
+    if(eachBox[i + gridWidth].style.backgroundImage === '') {
+        eachBox[i + gridWidth].style.backgroundImage = eachBox[i].style.backgroundImage
+        eachBox[i].style.backgroundImage = ''
+        const firstRow = [0, 1, 2, 3, 4, 5, 6, 7]
+        const isFirstRow = firstRow.includes(i)
+        if (isFirstRow && eachBox[i].style.backgroundImage === '') {
+        let randomColor = Math.floor(Math.random () * zombieColors.length)
+        eachBox[i].style.backgroundImage = zombieColors[randomColor]
+        }
+    }
+}
 
 // function for countdown timer
 
@@ -342,6 +354,7 @@ document.getElementById('play-again').addEventListener('click',reset)
 
 // constantly continues the pages in 100ms 
 window.setInterval( () => {
+    moveDownZombies()
     eachRow ()
     eachColumn()
 }, 100)
